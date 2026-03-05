@@ -34,7 +34,10 @@
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#products" class="nav-link">Products</a></li>
+                <li class="nav-item-dropdown" id="navProductsDropdown">
+                    <a href="#products" class="nav-link nav-link-dropdown">Products <i class="fas fa-chevron-down nav-dd-icon"></i></a>
+                    <div class="nav-mega-dropdown" id="megaDropdown"></div>
+                </li>
                 <li><a href="#features" class="nav-link">Why Us</a></li>
                 <li><a href="#testimonials" class="nav-link">Reviews</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -130,6 +133,10 @@
                 <h2 class="section-title">AI-Powered <span class="gradient-text">Products</span></h2>
                 <p class="section-subtitle">Explore our growing collection of intelligent digital tools</p>
             </div>
+
+            <!-- Category Filter Bar -->
+            <div class="category-filter-bar" id="categoryFilterBar" data-aos="fade-up"></div>
+            <div class="sub-filter-bar" id="subFilterBar" data-aos="fade-up"></div>
 
             <!-- Products Grid — rendered by JS -->
             <div class="products-grid" id="productsGrid" data-aos="fade-up">
@@ -370,19 +377,21 @@
                 <label for="prodDescription">Description</label>
                 <textarea id="prodDescription" rows="3" placeholder="Detailed description of your product..."></textarea>
             </div>
+            <div class="form-group">
+                <label for="prodPrice">Price</label>
+                <input type="text" id="prodPrice" placeholder="e.g. $5/mo or Free">
+            </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="prodPrice">Price</label>
-                    <input type="text" id="prodPrice" placeholder="e.g. $5/mo or Free">
+                    <label for="prodCategory">Category <span class="required">*</span></label>
+                    <select id="prodCategory" required>
+                        <option value="">— Select Category —</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="prodCategory">Category</label>
-                    <select id="prodCategory">
-                        <option value="ai">🧠 AI Tool</option>
-                        <option value="learning">📚 Learning</option>
-                        <option value="productivity">🎯 Productivity</option>
-                        <option value="dev-tool">🛠️ Dev Tool</option>
-                        <option value="other">📦 Other</option>
+                    <label for="prodSubcategory">Sub-Category</label>
+                    <select id="prodSubcategory" disabled>
+                        <option value="">— Select Category First —</option>
                     </select>
                 </div>
             </div>
