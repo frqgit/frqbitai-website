@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful — FrqBit AI</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -15,111 +16,165 @@
             color: #e4e4e7;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
         .success-container {
             text-align: center;
-            max-width: 560px;
+            max-width: 580px;
             padding: 60px 40px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 24px;
         }
+        .confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
         .success-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+            width: 100px; height: 100px; border-radius: 50%;
             background: linear-gradient(135deg, #10b981, #06b6d4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            font-size: 2.5rem;
-            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 30px; font-size: 2.5rem; color: #fff;
             animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        @keyframes scaleIn {
-            from { transform: scale(0); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+        @keyframes scaleIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 800;
             margin-bottom: 16px;
             background: linear-gradient(135deg, #10b981, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        p {
-            color: #a1a1aa;
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 12px;
+        p { color: #a1a1aa; font-size: 1.05rem; line-height: 1.7; margin-bottom: 12px; }
+        .plan-info {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 20px; background: rgba(124,58,237,0.1);
+            border: 1px solid rgba(124,58,237,0.2); border-radius: 50px;
+            font-size: 0.88rem; font-weight: 600; color: #a78bfa;
+            margin-bottom: 20px;
         }
-        .email-note {
-            font-size: 0.9rem;
-            color: #71717a;
-            margin-bottom: 36px;
-        }
-        .success-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .email-note { font-size: 0.88rem; color: #71717a; margin-bottom: 36px; }
+        .success-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 12px;
+            font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.3s;
         }
         .btn-primary {
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
-            color: #fff;
+            background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff;
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.3);
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(124,58,237,0.3); }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.1); color: #e4e4e7; }
+        .btn-outline:hover { border-color: rgba(124,58,237,0.4); background: rgba(124,58,237,0.08); }
+        .footer-note {
+            margin-top: 40px; font-size: 0.78rem; color: #52525b;
         }
-        .btn-outline {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #e4e4e7;
-        }
-        .btn-outline:hover {
-            border-color: rgba(124, 58, 237, 0.4);
-            background: rgba(124, 58, 237, 0.08);
+        .footer-note a { color: #a78bfa; text-decoration: none; }
+        @media (max-width: 480px) {
+            .success-container { padding: 40px 24px; }
+            h1 { font-size: 1.5rem; }
+            .success-actions { flex-direction: column; }
         }
     </style>
-    <script>
-        // Clear the cart after successful checkout
-        localStorage.removeItem('frqbit_cart');
-    </script>
 </head>
 <body>
+    <canvas class="confetti" id="confetti"></canvas>
     <div class="success-container">
-        <div class="success-icon">
-            <i class="fas fa-check"></i>
-        </div>
-        <h1>Payment Successful!</h1>
-        <p>Welcome to Vocab Memory AI! Your subscription is now active and ready to use.</p>
-        <p class="email-note">A confirmation email has been sent to your inbox with login details.</p>
+        <div class="success-icon"><i class="fas fa-check"></i></div>
+        <h1>Payment Successful! 🎉</h1>
+        <p>Thank you for your purchase! Your subscription is now active and ready to use.</p>
+        <div class="plan-info" id="planInfo"><i class="fas fa-crown"></i> <span id="planName">Loading...</span></div>
+        <p class="email-note">A confirmation email has been sent by Stripe to your inbox with receipt details.</p>
         <div class="success-actions">
-            <a href="https://vocab-memory-ai.vercel.app" class="btn btn-primary" target="_blank">
-                <i class="fas fa-rocket"></i> Start Learning
+            <a href="#" class="btn btn-primary" id="startBtn">
+                <i class="fas fa-rocket"></i> Start Using Product
             </a>
             <a href="/" class="btn btn-outline">
-                <i class="fas fa-arrow-left"></i> Back to Home
+                <i class="fas fa-th-large"></i> Browse More Products
             </a>
         </div>
     </div>
+    <p class="footer-note">Need help? <a href="mailto:hello@frqbitai.com">hello@frqbitai.com</a> · <a href="/">FrqBit AI</a></p>
+
+    <script>
+    // ── Product Registry (same as checkout.html) ──
+    const PRODUCT_INFO = {
+        'vocab-memory-ai': {
+            name: 'Vocab Memory AI',
+            returnUrl: 'https://vocab-memory-ai.vercel.app',
+            plans: {
+                'starter':   'Starter ($5/mo)',
+                'pro':       'Pro ($10/mo)',
+                'unlimited': 'Unlimited ($20/mo)'
+            }
+        }
+        // Add more products here as needed
+    };
+
+    // ── Read URL params ──
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('product');
+    const planId = params.get('plan');
+
+    const product = PRODUCT_INFO[productId];
+    const planNameEl = document.getElementById('planName');
+    const startBtn = document.getElementById('startBtn');
+
+    if (product) {
+        planNameEl.textContent = product.plans[planId] || planId || 'Subscription';
+        startBtn.href = product.returnUrl;
+        startBtn.innerHTML = `<i class="fas fa-rocket"></i> Start Using ${product.name}`;
+    } else {
+        planNameEl.textContent = 'Subscription Active';
+        startBtn.href = '/';
+        startBtn.innerHTML = '<i class="fas fa-rocket"></i> Go to Dashboard';
+    }
+
+    // ── Confetti Animation ──
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const pieces = [];
+    const colors = ['#7c3aed', '#a855f7', '#ec4899', '#06b6d4', '#10b981', '#f59e0b', '#ef4444'];
+    for (let i = 0; i < 100; i++) {
+        pieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            w: 4 + Math.random() * 6,
+            h: 8 + Math.random() * 8,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            vy: 1 + Math.random() * 3,
+            vx: (Math.random() - 0.5) * 2,
+            rot: Math.random() * 360,
+            vr: (Math.random() - 0.5) * 10,
+            opacity: 1
+        });
+    }
+
+    let frame = 0;
+    function drawConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        pieces.forEach(p => {
+            if (p.opacity <= 0) return;
+            alive = true;
+            ctx.save();
+            ctx.globalAlpha = p.opacity;
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rot * Math.PI) / 180);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+            p.y += p.vy;
+            p.x += p.vx;
+            p.rot += p.vr;
+            if (frame > 120) p.opacity -= 0.008;
+        });
+        frame++;
+        if (alive) requestAnimationFrame(drawConfetti);
+    }
+    drawConfetti();
+    </script>
 </body>
 </html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled — FrqBit AI</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #e4e4e7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .cancel-container {
+            text-align: center;
+            max-width: 560px;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+        }
+        .cancel-icon {
+            width: 100px; height: 100px; border-radius: 50%;
+            background: rgba(245, 158, 11, 0.12);
+            border: 2px solid rgba(245, 158, 11, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 30px; font-size: 2.5rem; color: #f59e0b;
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes scaleIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.7rem; font-weight: 800;
+            margin-bottom: 16px; color: #f5f5f5;
+        }
+        p { color: #a1a1aa; font-size: 1rem; line-height: 1.7; margin-bottom: 12px; }
+        .reassurance {
+            padding: 16px 20px; background: rgba(16,185,129,0.06);
+            border: 1px solid rgba(16,185,129,0.12); border-radius: 12px;
+            margin: 24px 0 32px; text-align: left;
+        }
+        .reassurance h3 {
+            font-size: 0.88rem; font-weight: 600; color: #10b981; margin-bottom: 10px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .reassurance ul { list-style: none; }
+        .reassurance li {
+            font-size: 0.85rem; color: #a1a1aa; padding: 3px 0;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .reassurance li i { color: #10b981; font-size: 0.7rem; width: 14px; text-align: center; }
+        .cancel-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 12px;
+            font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(124,58,237,0.3); }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.1); color: #e4e4e7; }
+        .btn-outline:hover { border-color: rgba(124,58,237,0.4); background: rgba(124,58,237,0.08); }
+        .footer-note {
+            margin-top: 40px; font-size: 0.78rem; color: #52525b;
+        }
+        .footer-note a { color: #a78bfa; text-decoration: none; }
+        @media (max-width: 480px) {
+            .cancel-container { padding: 40px 24px; }
+            h1 { font-size: 1.4rem; }
+            .cancel-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cancel-container">
+        <div class="cancel-icon"><i class="fas fa-times"></i></div>
+        <h1>Payment Cancelled</h1>
+        <p>No worries — no charges were made. Your payment was cancelled before processing.</p>
+
+        <div class="reassurance">
+            <h3><i class="fas fa-shield-alt"></i> Why choose our plans?</h3>
+            <ul>
+                <li><i class="fas fa-check"></i> Cancel anytime — no lock-in contracts</li>
+                <li><i class="fas fa-check"></i> Secure checkout powered by Stripe</li>
+                <li><i class="fas fa-check"></i> 15 science-backed learning methods</li>
+                <li><i class="fas fa-check"></i> GPT-4o powered AI content</li>
+                <li><i class="fas fa-check"></i> Plans starting at just $5/month</li>
+            </ul>
+        </div>
+
+        <div class="cancel-actions">
+            <a href="#" class="btn btn-primary" id="retryBtn">
+                <i class="fas fa-redo"></i> Try Again
+            </a>
+            <a href="/" class="btn btn-outline">
+                <i class="fas fa-th-large"></i> Browse Products
+            </a>
+        </div>
+    </div>
+    <p class="footer-note">Questions? <a href="mailto:hello@frqbitai.com">hello@frqbitai.com</a> · <a href="/">FrqBit AI</a></p>
+
+    <script>
+    // Build retry link from URL params
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('product');
+    const planId = params.get('plan');
+    const retryBtn = document.getElementById('retryBtn');
+
+    if (productId && planId) {
+        retryBtn.href = `/checkout.html?product=${productId}&plan=${planId}`;
+    } else {
+        retryBtn.href = '/';
+        retryBtn.innerHTML = '<i class="fas fa-home"></i> Back to Home';
+    }
+    </script>
+</body>
+</html>
